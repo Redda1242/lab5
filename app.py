@@ -27,6 +27,11 @@ def create():
 def RetrieveDataList():
     employees = EmployeeModel.query.all()
     return render_template('datalist.html',employees = employees)
-
+@app.route('/data/<int:id>')
+def RetrieveSingleEmployee(id):
+    employee = EmployeeModel.query.filter_by(employee_id=id).first()
+    if employee:
+        return render_template('data.html', employee = employee)
+    return f"Employee with id ={id} Doenst exist"
        
 
