@@ -23,4 +23,10 @@ def create():
         employee = EmployeeModel(employee_id=employee_id, name=name, age=age, position = position)
         db.session.add(employee)
         db.session.commit()
-        return redirect('/data')
+        return redirect('/data')@app.route('/data')
+def RetrieveDataList():
+    employees = EmployeeModel.query.all()
+    return render_template('datalist.html',employees = employees)
+
+       
+
